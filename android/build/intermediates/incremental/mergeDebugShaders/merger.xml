@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/media/super/Disco Insti/AMS2 DEFINITIVO/M8/UF3/Projects/DropGame/android/src/main/shaders"/></dataSet><dataSet config="debug" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="/media/super/Disco Insti/AMS2 DEFINITIVO/M8/UF3/Projects/DropGame/android/src/debug/shaders"/></dataSet></merger>

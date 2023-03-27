@@ -1,0 +1,4 @@
+#Tue Mar 21 16:45:44 CET 2023
+base.0=/media/super/Disco Insti/AMS2 DEFINITIVO/M8/UF3/Projects/DropGame/android/build/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
