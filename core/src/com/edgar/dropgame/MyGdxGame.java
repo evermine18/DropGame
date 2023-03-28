@@ -28,6 +28,7 @@ public class MyGdxGame extends ApplicationAdapter {
 	private Array<Rectangle> raindrops;
 	private long lastDropTime;
 
+
 	@Override
 	public void create() {
 		// Loading all resources
@@ -40,15 +41,16 @@ public class MyGdxGame extends ApplicationAdapter {
 		rainMusic.setLooping(true);
 		rainMusic.play();
 
-		// create the camera and the SpriteBatch
+		// Creating the camera
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, 800, 480);
+		// Creating the SpriteBatch
 		batch = new SpriteBatch();
 
-		// create a Rectangle to logically represent the bucket
+		// Making the rectangle to represent the bucket
 		bucket = new Rectangle();
-		bucket.x = 800 / 2 - 64 / 2; // center the bucket horizontally
-		bucket.y = 20; // bottom left corner of the bucket is 20 pixels above the bottom screen edge
+		bucket.x = 800 / 2 - 64 / 2;
+		bucket.y = 20;
 		bucket.width = 64;
 		bucket.height = 64;
 
@@ -69,21 +71,14 @@ public class MyGdxGame extends ApplicationAdapter {
 
 	@Override
 	public void render() {
-		// clear the screen with a dark blue color. The
-		// arguments to clear are the red, green
-		// blue and alpha component in the range [0,1]
-		// of the color to be used to clear the screen.
+
 		ScreenUtils.clear(0, 0, 0.2f, 1);
 
-		// tell the camera to update its matrices.
+
 		camera.update();
 
-		// tell the SpriteBatch to render in the
-		// coordinate system specified by the camera.
 		batch.setProjectionMatrix(camera.combined);
 
-		// begin a new batch and draw the bucket and
-		// all drops
 		batch.begin();
 		batch.draw(bucketImage, bucket.x, bucket.y);
 		for(Rectangle raindrop: raindrops) {
@@ -91,7 +86,6 @@ public class MyGdxGame extends ApplicationAdapter {
 		}
 		batch.end();
 
-		// process user input
 		if(Gdx.input.isTouched()) {
 			Vector3 touchPos = new Vector3();
 			touchPos.set(Gdx.input.getX(), Gdx.input.getY(), 0);
@@ -101,16 +95,12 @@ public class MyGdxGame extends ApplicationAdapter {
 		if(Gdx.input.isKeyPressed(Keys.LEFT)) bucket.x -= 200 * Gdx.graphics.getDeltaTime();
 		if(Gdx.input.isKeyPressed(Keys.RIGHT)) bucket.x += 200 * Gdx.graphics.getDeltaTime();
 
-		// make sure the bucket stays within the screen bounds
+
 		if(bucket.x < 0) bucket.x = 0;
 		if(bucket.x > 800 - 64) bucket.x = 800 - 64;
 
-		// check if we need to create a new raindrop
 		if(TimeUtils.nanoTime() - lastDropTime > 1000000000) spawnRaindrop();
 
-		// move the raindrops, remove any that are beneath the bottom edge of
-		// the screen or that hit the bucket. In the latter case we play back
-		// a sound effect as well.
 		for (Iterator<Rectangle> iter = raindrops.iterator(); iter.hasNext(); ) {
 			Rectangle raindrop = iter.next();
 			raindrop.y -= 200 * Gdx.graphics.getDeltaTime();
